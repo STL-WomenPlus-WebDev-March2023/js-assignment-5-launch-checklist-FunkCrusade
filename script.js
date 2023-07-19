@@ -3,12 +3,12 @@
 window.addEventListener("load", function () {
   let button = document.getElementById("formSubmit");
   button.addEventListener("click", function () {
-    let pilotNameInput = document.getElementById("pilotName");
-    let copilotName = document.querySelector("input[name=copilotName]");
+    let pilot = document.getElementById("pilotName");
+    let copilot = document.querySelector("input[name=copilotName]");
     let fuelLevel = document.querySelector("input[name=fuelLevel]");
-    let cargoMass = document.querySelector("input[name=cargoMass]");
+    let cargoLevel = document.querySelector("input[name=cargoMass]");
     let list = document.getElementById("faultyItems")
-    formSubmission(document, list, pilotNameInput.value, copilotName.value, fuelLevel.value, cargoMass.value)
+    formSubmission(document, list, pilot.value, copilot.value, fuelLevel.value, cargoLevel.value)
 
   })
 
