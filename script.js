@@ -1,4 +1,6 @@
-// Write your JavaScript code here!
+// added event listener for the form and preventDefault() method 
+// to handle the case where user info is not correct and form shouldnt be submitted 
+
 window.addEventListener("load", function () {
   let form = document.querySelector("form");
   form.addEventListener("submit", function (event) {
@@ -10,17 +12,21 @@ window.addEventListener("load", function () {
     let cargoLevel = document.querySelector("input[name=cargoMass]");
     let list = document.getElementById("faultyItems")
     formSubmission(document, list, pilot.value, copilot.value, fuelLevel.value, cargoLevel.value)
-  //function with a event param)
+  //used document methods to access the user input value to complete 
+  //my conditional statements in the formSubmission
   })
 
 
   let listedPlanets;
-  // Set listedPlanetsResponse equal to the value returned by calling myFetch()
+  //used the .then method to create a promoise to invoke the API results from the myFetch 
+  //and also invoke the randomplanet function with planet info listed to display
   let listedPlanetsResponse = myFetch()
   listedPlanetsResponse.then(function (result) {
     listedPlanets = result;
   }).then(function () {
-    // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
+    // called pickPlanet() to access random planet and addDest() 
+    //to get the values of each key and display info
+    //not two seperate
     let planet = pickPlanet(listedPlanets)
     addDestinationInfo(document, planet.name, planet.diameter, planet.star, planet.distance, planet.moons, planet.image)
 

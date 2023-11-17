@@ -1,5 +1,8 @@
-// Write your helper functions here!
 require('isomorphic-fetch');
+
+//used document method to gain access to to our display HTML 
+//and print our random planet along with the list of information about the planet
+// 
 
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
   let targetPlanet=document.getElementById("missionTarget")
@@ -16,7 +19,8 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 }
   
 function validateInput(testInput) {
-  //should take in string as value and return 1 of 3 answers:
+  //took in string as value and return 1 of 3 answers 
+  //to set conditioals for our formSubmission:
   if (testInput === "") {
     return "Empty";
   }
@@ -27,7 +31,8 @@ function validateInput(testInput) {
     return "Is a Number";
   }
 }
-  
+  //called our validInput() to create the alerts for the user 
+  //to properly fill out form before submission 
 function formSubmission(document ,list, pilot, copilot, fuelLevel, cargoLevel) {
   if(validateInput(pilot)==="Empty"||validateInput(copilot)==="Empty"||validateInput(fuelLevel)==="Empty"||validateInput(cargoLevel)==="Empty"){
     alert("Please fill al the fields!");
@@ -37,12 +42,15 @@ function formSubmission(document ,list, pilot, copilot, fuelLevel, cargoLevel) {
     alert("Make sure to enter valid number input for fuel level and cargo level");  
   }
 
+  //accessed the document information with their ID to access and change the the innerHTML
   let launchStatus = document.getElementById("launchStatus");
   let pilotStatus = document.getElementById("pilotStatus");
   let copilotStatus = document.getElementById("copilotStatus");
   let fuelStatus = document.getElementById("fuelStatus");
   let cargoStatus = document.getElementById("cargoStatus");
 
+  //used conditional statements to alter innerHTML displayed to 
+  //make sure all conditions were correct for our shuttle launch 
 
   //update fuel status with color change and messages
   if (fuelLevel < 10000){
@@ -76,7 +84,7 @@ function formSubmission(document ,list, pilot, copilot, fuelLevel, cargoLevel) {
   }
 }
 
-//fetch using URL provided and then load json data
+//used fetch funtion to retrieve our planet objects for displace 
 async function myFetch() {
   let planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
     return response.json()
@@ -84,6 +92,9 @@ async function myFetch() {
   return planetsReturned;
 }
 
+//pickPlanet function uses Math methods to generate random 
+//planet and all the the object notation that goes along with it. 
+//this will be passed into our promise and loaded immediately first when the page loads.
 function pickPlanet(planets) {
   let planetIndex = Math.floor(Math.random() * planets.length);
   return planets[planetIndex];
